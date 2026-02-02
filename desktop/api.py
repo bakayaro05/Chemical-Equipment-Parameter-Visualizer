@@ -14,6 +14,14 @@ def get_history():
     res.raise_for_status()
     return res.json()
 
+def download_pdf(save_path):
+    res = requests.get(f"{BASE_URL}/pdf/")
+    res.raise_for_status()
+
+    with open(save_path, "wb") as f:
+        f.write(res.content)
+
+
 def get_dataset(dataset_id):
     res = requests.get(f"{BASE_URL}/dataset/{dataset_id}/")
     res.raise_for_status()
