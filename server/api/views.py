@@ -25,7 +25,7 @@ import io
 #history api    
 @api_view(["GET"])
 @authentication_classes([BasicAuthentication])
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def history(request):
     datasets = Dataset.objects.order_by("-uploaded_at")[:5]
     serializer = DatasetSerializer(datasets, many=True)
